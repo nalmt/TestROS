@@ -97,7 +97,7 @@ class turtlebot():
         else:
             return 1
 
-    def rotate(self, speed = 20, angle = 90, clockwise = 0):
+    def rotate(self, speed = 40, angle = 70, clockwise = 0):
         # Receiveing the user's input
         vel_msg = Twist()
 
@@ -155,7 +155,7 @@ if __name__ == '__main__':
             print("Let's make the robot interact")
             interaction = 1
             while interaction > 0:
-                interaction = input("0: stop, 1:move, 2: rotate")
+                interaction = input("0: stop, 1:move, 2: rotate: ")
                 if interaction == 0:
                     print("Stop")
                 elif interaction == 1:
