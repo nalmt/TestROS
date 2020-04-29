@@ -139,9 +139,9 @@ if __name__ == '__main__':
         #Testing our function
         choice = input("0: move to goal, 1: move forward, 2: rotate")
         x = turtlebot()
-        if choice == "0":
+        if choice == 0:
             x.move2goal()
-        elif choice == "1":
+        elif choice == 1:
             x.move()
         else:
             x.rotate()
