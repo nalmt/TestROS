@@ -56,10 +56,9 @@ class turtlebot():
 
         #rospy.spin()
 
-    def move(self):
+    def move(self, speed = 1):
         # Receiveing the user's input
-        print("Let's move your robot")
-        speed = input("Input your speed:")
+        #speed = input("Input your speed:")
         distance = input("Type your distance:")
         isForward = input("Foward?: ")
         vel_msg = Twist()
@@ -141,7 +140,9 @@ if __name__ == '__main__':
         if choice == 0:
             x.move2goal()
         elif choice == 1:
-            x.move()
+	    print("Let's move your robot")
+	    speed = input("Input your speed:")
+            x.move(speed)
         else:
             x.rotate()
 
