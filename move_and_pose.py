@@ -56,7 +56,7 @@ class turtlebot():
 
         #rospy.spin()
 
-    def move(self, speed = 1, distance = 1, isForward = 1):
+    def move(self, speed = 2, distance = 1, isForward = 1):
         # Receiveing the user's input
         vel_msg = Twist()
 
@@ -97,7 +97,7 @@ class turtlebot():
         else:
             return 1
 
-    def rotate(self, speed = 40, angle = 70, clockwise = 0):
+    def rotate(self, speed = 70, angle = 70, clockwise = 0):
         # Receiveing the user's input
         vel_msg = Twist()
 
