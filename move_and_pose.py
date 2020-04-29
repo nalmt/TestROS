@@ -56,11 +56,8 @@ class turtlebot():
 
         #rospy.spin()
 
-    def move(self, speed = 1):
+    def move(self, speed = 1, distance = 1, isForward = 1):
         # Receiveing the user's input
-        #speed = input("Input your speed:")
-        distance = input("Type your distance:")
-        isForward = input("Foward?: ")
         vel_msg = Twist()
 
         # Checking if the movement is forward or backwards
@@ -93,12 +90,15 @@ class turtlebot():
         # Force the robot to stop
         self.velocity_publisher.publish(vel_msg)
 
-    def rotate(self):
+        print("X: % 2.1f, Y: % 2.1f" % (self.pose.x, self.pose.y))
+
+        if self.pose.x > 0.1 and self.pose.x < 10.9 and self.pose.y > 0.1 and self. pose.y < 10.9:
+            return 0
+        else:
+            return 1
+
+    def rotate(self, speed = 20, angle = 90, clockwise = 0):
         # Receiveing the user's input
-        print("Let's rotate your robot")
-        speed = input("Input your speed (degrees/sec):")
-        angle = input("Type your distance (degrees):")
-        clockwise = input("Clowkise?: ")  # True or false
         vel_msg = Twist()
 
         # Converting from angles to radians
@@ -135,16 +135,35 @@ class turtlebot():
 if __name__ == '__main__':
     try:
         #Testing our function
-        choice = input("0: move to goal, 1: move forward, 2: rotate")
+        choice = input("0: move to goal, 1: move forward, 2: rotate, 3: interaction: ")
         x = turtlebot()
         if choice == 0:
             x.move2goal()
         elif choice == 1:
-	    print("Let's move your robot")
-	    speed = input("Input your speed:")
-            x.move(speed)
+            print("Let's move your robot")
+            speed = input("Input your speed:")
+            distance = input("Type your distance:")
+            isForward = input("Foward?: ")
+            x.move(speed, distance, isForward)
+        elif choice == 2:
+            print("Let's rotate your robot")
+            speed = input("Input your speed (degrees/sec):")
+            angle = input("Type your distance (degrees):")
+            clockwise = input("Clowkise?: ")  # True or false
+            x.rotate(speed, angle, clockwise)
         else:
-            x.rotate()
+            print("Let's make the robot interact")
+            interaction = 1
+            while interaction > 0:
+                interaction = input("0: stop, 1:move, 2: rotate")
+                if interaction == 0:
+                    print("Stop")
+                elif interaction == 1:
+                    feedback = x.move()
+                    print("Feedback: % 1d" % feedback)
+                else:
+                    x.rotate()
+                    print("Feedback: 0")
 
 
     except rospy.ROSInterruptException: pass
