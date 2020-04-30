@@ -46,7 +46,7 @@ def world(agent, environment):
     for i in range(10):
         action = agent.action(feedback)
         feedback = environment.feedback(action)
-        print("Action: ", action, ", Anticipation: ", agent.anticipation(), ", Feedback: ", feedback, ", Satisfaction : ", agent.satisfaction(feedback))
+        print("Action: ", action, ", Anticipation: ", agent.anticipation(), ", Feedback: ", feedback, ", Satisfaction: ", agent.satisfaction(feedback))
 
 
 # TODO Define the hedonist value of couple (action, feedback)
