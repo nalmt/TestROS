@@ -1,3 +1,5 @@
+# TODO Import the TurtleBot environment when ROS is installed
+# from turtlebot_controler import turtlebot
 
 
 class Agent:
@@ -49,11 +51,12 @@ def world(agent, environment):
         print("Action: ", action, ", Anticipation: ", agent.anticipation(), ", Feedback: ", feedback, ", Satisfaction: ", agent.satisfaction(feedback))
 
 
-# TODO Define the hedonist value of couple (action, feedback)
+# TODO Define the hedonist value of interactions (action, feedback)
 hedonist_table = [[0, 1], [0, 1]]
 # TODO Choose an agent
 a = Agent(hedonist_table)
 # TODO Choose an environment
 e = Environment2()
+# e = turtlebot()
 
 world(a, e)
