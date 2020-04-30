@@ -131,6 +131,14 @@ class turtlebot():
         self.velocity_publisher.publish(vel_msg)
         # rospy.spin()
 
+        return 0
+
+    def feedback(self, action):
+        if action == 0:
+            return self.move()
+        else:
+            return self.rotate()
+
 
 if __name__ == '__main__':
     try:
@@ -155,15 +163,15 @@ if __name__ == '__main__':
             print("Let's make the robot interact")
             interaction = 1
             while interaction > 0:
-                interaction = input("0: stop, 1:move, 2: rotate: ")
+                interaction = input("0: move, 1:rotate, 2: stop: ")
                 if interaction == 0:
-                    print("Stop")
-                elif interaction == 1:
                     feedback = x.move()
                     print("Feedback: % 1d" % feedback)
-                else:
+                elif interaction == 1:
                     x.rotate()
                     print("Feedback: 0")
+                else:
+                    print("Stop")
 
 
-    except rospy.ROSInterruptException: pass
+        except rospy.ROSInterruptException: pass
