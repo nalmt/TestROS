@@ -58,6 +58,6 @@ hedonist_table = [[0, 1], [0, 1]]
 a = Agent(hedonist_table)
 # TODO Choose an environment
 e = Environment1()
-# e = TurtlesimEnacter()
+# e = TurtleSimEnacter()
 
 world(a, e)
