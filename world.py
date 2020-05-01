@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # TODO Import the TurtleBot environment when ROS is installed
-# from turtlebot_interaction import TurtleSimEnacter
+# from turtlesim_enacter import TurtleSimEnacter
 
 
 class Agent:
