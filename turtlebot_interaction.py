@@ -43,11 +43,9 @@ class Turtlebot:
         vel_msg.angular.z = 0
         # Publish the null velocity to force the robot to stop
         self.velocity_publisher.publish(vel_msg)
-
         # print(Position x=% 2.1f, y=% 2.1f" % (self.pose.x, self.pose.y))
 
         # return feedback 1 if position is against the wall
-
         if 0.1 < self.pose.x < 10.9 and 0.1 < self.pose.y < 10.9:
             return 0
         else:

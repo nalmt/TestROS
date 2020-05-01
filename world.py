@@ -49,7 +49,6 @@ def world(agent, environment):
     for i in range(10):
         action = agent.action(feedback)
         feedback = environment.feedback(action)
-        # print("Action: ", action, ", Anticipation: ", agent.anticipation(), ", Feedback: ", feedback, ", Satisfaction: ", agent.satisfaction(feedback))
         print("Action: " + str(action) + ", Anticipation: " + str(agent.anticipation()) + ", Feedback: " + str(feedback) + ", Satisfaction: " + str(agent.satisfaction(feedback)))
 
 
