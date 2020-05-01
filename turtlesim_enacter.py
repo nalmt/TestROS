@@ -3,6 +3,13 @@ import rospy
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
 
+# Olivier Georgeon, 2020.
+# This code is used to teach Develpmental AI.
+#
+# Inspired by ROS Python tutorial:
+#   * http://wiki.ros.org/turtlesim/Tutorials#Practicing_Python_with_Turtlesim
+#   * http://wiki.ros.org/turtlesim/Tutorials/Go%20to%20Goal
+
 
 class TurtleSimEnacter:
 
@@ -21,7 +28,7 @@ class TurtleSimEnacter:
         self.pose.y = round(self.pose.y, 4)
 
     def move(self, linear_speed=0.0, angular_speed=0.0, duration=1.0):
-        """ Enacts the action and returns the feedback """
+        """ Enacting a movement and return the outcome """
         vel_msg = Twist()
 
         vel_msg.linear.x = linear_speed
@@ -53,6 +60,7 @@ class TurtleSimEnacter:
             return 1
 
     def outcome(self, action):
+        """ Enacting an action and return the outcome """
         if action == 0:
             # move forward
             return self.move(linear_speed=1)
@@ -67,6 +75,7 @@ class TurtleSimEnacter:
 
 
 if __name__ == '__main__':
+    """ Main """
     try:
         x = TurtleSimEnacter()
         choice = input("Type 0 to enter values, or 1 to enter interactions: ")
