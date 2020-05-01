@@ -4,23 +4,24 @@ from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
 
 
-class Turtlebot:
+class TurtlesimEnacter:
 
     def __init__(self):
-        # Creating our node,publisher and subscriber
+        """ Creating our node, publisher and subscriber """
         rospy.init_node('turtlebot_controller', anonymous=True)
         self.velocity_publisher = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
         self.pose_subscriber = rospy.Subscriber('/turtle1/pose', Pose, self.callback)
         self.pose = Pose()
         self.rate = rospy.Rate(10)
 
-    # Callback function implementing the pose value received
     def callback(self, data):
+        """ Callback function implementing the pose value received """
         self.pose = data
         self.pose.x = round(self.pose.x, 4)
         self.pose.y = round(self.pose.y, 4)
 
     def move(self, linear_speed=0.0, angular_speed=0.0, duration=1.0):
+        """ Enacts the action and returns the feedback """
         vel_msg = Twist()
 
         vel_msg.linear.x = linear_speed
@@ -51,7 +52,7 @@ class Turtlebot:
         else:
             return 1
 
-    def feedback(self, action):
+    def outcome(self, action):
         if action == 0:
             # move forward
             return self.move(linear_speed=1)
@@ -67,27 +68,27 @@ class Turtlebot:
 
 if __name__ == '__main__':
     try:
-        x = Turtlebot()
+        x = TurtlesimEnacter()
         choice = input("Type 0 to enter values, or 1 to enter interactions: ")
         if choice == 0:
             lx_speed = float(input("Input the linear speed (cell /sec): "))
             az_speed = float(input("Input the angular speed (rad /sec): "))
             d = float(input("Input the duration (sec): "))
-            feedback = x.move(lx_speed, az_speed, d)
-            print("Feedback:% 1d" % feedback)
+            outcome = x.move(lx_speed, az_speed, d)
+            print("Feedback:% 1d" % outcome)
         elif choice == 1:
             interaction = 0
             while interaction < 3:
                 interaction = input("Type 0 to move forward, 1 to rotate left, 2 to rotate right, or 3 to stop: ")
                 if interaction == 0:
-                    feedback = x.move(linear_speed=1)
-                    print("Feedback:% 1d" % feedback)
+                    outcome = x.move(linear_speed=1)
+                    print("Feedback:% 1d" % outcome)
                 elif interaction == 1:
-                    feedback = x.move(linear_speed=0.5, angular_speed=1)
-                    print("Feedback:% 1d" % feedback)
+                    outcome = x.move(linear_speed=0.5, angular_speed=1)
+                    print("Feedback:% 1d" % outcome)
                 elif interaction == 2:
-                    feedback = x.move(linear_speed=0.5, angular_speed=-1)
-                    print("Feedback:% 1d" % feedback)
+                    outcome = x.move(linear_speed=0.5, angular_speed=-1)
+                    print("Feedback:% 1d" % outcome)
 
     except rospy.ROSInterruptException:
         pass

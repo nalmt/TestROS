@@ -29,7 +29,7 @@ class Agent:
 
 
 class Environment1:
-    def feedback(self, action):
+    def outcome(self, action):
         if action == 0:
             return 0
         else:
@@ -37,7 +37,7 @@ class Environment1:
 
 
 class Environment2:
-    def feedback(self, action):
+    def outcome(self, action):
         if action == 0:
             return 1
         else:
@@ -45,11 +45,11 @@ class Environment2:
 
 
 def world(agent, environment):
-    feedback = 0
+    outcome = 0
     for i in range(10):
-        action = agent.action(feedback)
-        feedback = environment.feedback(action)
-        print("Action: " + str(action) + ", Anticipation: " + str(agent.anticipation()) + ", Feedback: " + str(feedback) + ", Satisfaction: " + str(agent.satisfaction(feedback)))
+        action = agent.action(outcome)
+        outcome = environment.outcome(action)
+        print("Action: " + str(action) + ", Anticipation: " + str(agent.anticipation()) + ", Outcome: " + str(outcome) + ", Satisfaction: " + str(agent.satisfaction(outcome)))
 
 
 # TODO Define the hedonist value of interactions (action, feedback)
@@ -57,7 +57,7 @@ hedonist_table = [[0, 1], [0, 1]]
 # TODO Choose an agent
 a = Agent(hedonist_table)
 # TODO Choose an environment
-e = Environment2()
-# e = Turtlebot()
+e = Environment1()
+# e = TurtlesimEnacter()
 
 world(a, e)
