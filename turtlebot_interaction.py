@@ -78,7 +78,7 @@ if __name__ == '__main__':
             feedback = x.move(lx_speed, az_speed, d)
             print("Feedback: % 1d" % feedback)
         elif choice == 1:
-            interaction: int = 0
+            interaction = 0
             while interaction < 3:
                 interaction = input("Type 0 to move forward, 1 to rotate left, 2 to rotate right, or 3 to stop: ")
                 if interaction == 0:
