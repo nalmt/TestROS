@@ -8,7 +8,7 @@ class TurtlesimEnacter:
 
     def __init__(self):
         """ Creating our node, publisher and subscriber """
-        rospy.init_node('turtlebot_controller', anonymous=True)
+        rospy.init_node('turtlebot_enacter', anonymous=True)
         self.velocity_publisher = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
         self.pose_subscriber = rospy.Subscriber('/turtle1/pose', Pose, self.callback)
         self.pose = Pose()
@@ -75,7 +75,7 @@ if __name__ == '__main__':
             az_speed = float(input("Input the angular speed (rad /sec): "))
             d = float(input("Input the duration (sec): "))
             outcome = x.move(lx_speed, az_speed, d)
-            print("Feedback:% 1d" % outcome)
+            print("Outcome:% 1d" % outcome)
         elif choice == 1:
             interaction = 0
             while interaction < 3:
