@@ -20,7 +20,7 @@ class Turtlebot:
         self.pose.x = round(self.pose.x, 4)
         self.pose.y = round(self.pose.y, 4)
 
-    def move(self, linear_speed=0.0, angular_speed=0.0, duration=1.0) -> int:
+    def move(self, linear_speed=0.0, angular_speed=0.0, duration=1.0):
         vel_msg = Twist()
 
         vel_msg.linear.x = linear_speed
@@ -52,7 +52,7 @@ class Turtlebot:
         else:
             return 1
 
-    def feedback(self, action: int) -> int:
+    def feedback(self, action):
         if action == 0:
             # move forward
             return self.move(linear_speed=1)
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     try:
         x = Turtlebot()
         print("Let's move the robot ")
-        choice = input("Type 0 to enter values or 1 to enter interactions: ")
+        choice = input("Type 0 to enter values, or 1 to enter interactions: ")
         if choice == 0:
             lx_speed = float(input("Input the linear speed (cell /sec): "))
             az_speed = float(input("Input the angular speed (rad /sec): "))
@@ -80,7 +80,7 @@ if __name__ == '__main__':
         elif choice == 1:
             interaction: int = 0
             while interaction < 3:
-                interaction = input("Type 0 to move, 1 to rotate left, 2 to rotate right, 3 to stop: ")
+                interaction = input("Type 0 to move forward, 1 to rotate left, 2 to rotate right, or 3 to stop: ")
                 if interaction == 0:
                     feedback = x.move(linear_speed=1)
                     print("Feedback: % 1d" % feedback)
