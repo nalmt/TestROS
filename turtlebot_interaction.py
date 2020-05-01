@@ -44,9 +44,10 @@ class Turtlebot:
         # Publish the null velocity to force the robot to stop
         self.velocity_publisher.publish(vel_msg)
 
-        print("Position x=% 2.1f, y=% 2.1f" % (self.pose.x, self.pose.y))
+        # print(Position x=% 2.1f, y=% 2.1f" % (self.pose.x, self.pose.y))
 
         # return feedback 1 if position is against the wall
+
         if 0.1 < self.pose.x < 10.9 and 0.1 < self.pose.y < 10.9:
             return 0
         else:
@@ -75,20 +76,20 @@ if __name__ == '__main__':
             az_speed = float(input("Input the angular speed (rad /sec): "))
             d = float(input("Input the duration (sec): "))
             feedback = x.move(lx_speed, az_speed, d)
-            print("Feedback: % 1d" % feedback)
+            print("Feedback:% 1d" % feedback)
         elif choice == 1:
             interaction = 0
             while interaction < 3:
                 interaction = input("Type 0 to move forward, 1 to rotate left, 2 to rotate right, or 3 to stop: ")
                 if interaction == 0:
                     feedback = x.move(linear_speed=1)
-                    print("Feedback: % 1d" % feedback)
+                    print("Feedback:% 1d" % feedback)
                 elif interaction == 1:
                     feedback = x.move(linear_speed=0.5, angular_speed=1)
-                    print("Feedback: % 1d" % feedback)
+                    print("Feedback:% 1d" % feedback)
                 elif interaction == 2:
                     feedback = x.move(linear_speed=0.5, angular_speed=-1)
-                    print("Feedback: % 1d" % feedback)
+                    print("Feedback:% 1d" % feedback)
 
     except rospy.ROSInterruptException:
         pass

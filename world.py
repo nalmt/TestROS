@@ -49,7 +49,8 @@ def world(agent, environment):
     for i in range(10):
         action = agent.action(feedback)
         feedback = environment.feedback(action)
-        print("Action: ", action, ", Anticipation: ", agent.anticipation(), ", Feedback: ", feedback, ", Satisfaction: ", agent.satisfaction(feedback))
+        # print("Action: ", action, ", Anticipation: ", agent.anticipation(), ", Feedback: ", feedback, ", Satisfaction: ", agent.satisfaction(feedback))
+        print("Action: " + str(action) + ", Anticipation: " + str(agent.anticipation()) + ", Feedback: " + str(feedback) + ", Satisfaction: " + str(agent.satisfaction(feedback)))
 
 
 # TODO Define the hedonist value of interactions (action, feedback)
@@ -58,6 +59,6 @@ hedonist_table = [[0, 1], [0, 1]]
 a = Agent(hedonist_table)
 # TODO Choose an environment
 e = Environment2()
-# e = turtlebot()
+# e = Turtlebot()
 
 world(a, e)
