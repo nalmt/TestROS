@@ -92,13 +92,13 @@ if __name__ == '__main__':
                 interaction = input("Type 0 to move forward, 1 to rotate left, 2 to rotate right, or 3 to stop: ")
                 if interaction == 0:
                     outcome = x.move(linear_speed=1)
-                    print("Feedback:% 1d" % outcome)
+                    print("Outcome:% 1d" % outcome)
                 elif interaction == 1:
                     outcome = x.move(linear_speed=0.5, angular_speed=1)
-                    print("Feedback:% 1d" % outcome)
+                    print("Outcome:% 1d" % outcome)
                 elif interaction == 2:
                     outcome = x.move(linear_speed=0.5, angular_speed=-1)
-                    print("Feedback:% 1d" % outcome)
+                    print("Outcome:% 1d" % outcome)
 
     except rospy.ROSInterruptException:
         pass

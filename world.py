@@ -26,8 +26,10 @@ class Agent:
         return self.anticipated_outcome
 
     def satisfaction(self, new_outcome):
-        """ Computing the satisfaction of the agent from the action and the outcome """
+        """ Computing a tuple representing the agent's satisfaction after the last interaction """
+        # True if the anticipation was correct
         anticipation_satisfaction = (self.anticipated_outcome == new_outcome)
+        # The value of the enacted interaction
         hedonist_satisfaction = self.hedonist_table[self._action][new_outcome]
         return anticipation_satisfaction, hedonist_satisfaction
 
@@ -56,7 +58,7 @@ def world(agent, environment):
     for i in range(10):
         action = agent.action(outcome)
         outcome = environment.outcome(action)
-        print("Action: " + str(action) + ", Anticipation: " + str(agent.anticipation()) + ", Outcome: " + str(outcome)
+        print(" Action: " + str(action) + ", Anticipation: " + str(agent.anticipation()) + ", Outcome: " + str(outcome)
               + ", Satisfaction: " + str(agent.satisfaction(outcome)))
 
 
