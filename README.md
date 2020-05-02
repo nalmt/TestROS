@@ -8,4 +8,5 @@ It is a standalone file that can run in any python environment.
 turtlesim_enacter.py provides the interface between a developmental agent and the [turtlesim simulator](http://wiki.ros.org/turtlesim). 
 It requires a ROS installation. 
 
-See the wiki to learn how to use it.
+See the [wiki](https://github.com/OlivierGeorgeon/TestROS/wiki) to learn how to use it (French).
+
