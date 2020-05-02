@@ -28,7 +28,7 @@ class TurtleSimEnacter:
         self.pose.y = round(self.pose.y, 4)
 
     def move(self, linear_speed=0.0, angular_speed=0.0, duration=1.0):
-        """ Enacting a movement and return the outcome """
+        """ Enacting a movement and returning the outcome """
         vel_msg = Twist()
 
         vel_msg.linear.x = linear_speed
@@ -45,6 +45,7 @@ class TurtleSimEnacter:
         while float(rospy.Time.now().to_sec()) - t0 < duration:
             # Publish the velocity
             self.velocity_publisher.publish(vel_msg)
+            self.rate.sleep()
 
         # After the loop, stops the robot
         vel_msg.linear.x = 0
@@ -53,14 +54,14 @@ class TurtleSimEnacter:
         self.velocity_publisher.publish(vel_msg)
         # print(Position x=% 2.1f, y=% 2.1f" % (self.pose.x, self.pose.y))
 
-        # return feedback 1 if position is against the wall
+        # return outcome 1 if position is against the wall
         if 0.1 < self.pose.x < 10.9 and 0.1 < self.pose.y < 10.9:
             return 0
         else:
             return 1
 
     def outcome(self, action):
-        """ Enacting an action and return the outcome """
+        """ Enacting an action and returning the outcome """
         if action == 0:
             # move forward
             return self.move(linear_speed=1)
