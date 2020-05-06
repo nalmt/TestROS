@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# TODO Import the TurtleBot environment when ROS is installed
+# TODO Import the Turtlesim environment when ROS is installed
 # from turtlesim_enacter import TurtleSimEnacter
 
 # Olivier Georgeon, 2020.
@@ -63,7 +63,7 @@ def world(agent, environment):
 
 
 # TODO Define the hedonist values of interactions (action, outcome)
-hedonist_table = [[0, 1], [0, 1]]
+hedonist_table = [[-1, 1], [-1, 1]]
 # TODO Choose an agent
 a = Agent(hedonist_table)
 # TODO Choose an environment
