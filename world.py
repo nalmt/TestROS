@@ -27,10 +27,7 @@ class Agent:
         self.latest_action = (self._action, outcome)
 
         if self.ennui == True:
-            if self._action == 1:
-                self._action = 0
-            else:
-                self._action = 1
+            self._action ^= 1
             self.ennui = False
 
         return self._action
@@ -48,10 +45,7 @@ class Agent:
                 self.anticipated_outcome = self.latest_action[1]
             else:
                 # Son action est differente de la precedente, l'outcome sera differente.
-                if self.latest_action[1] == 1:
-                    self.anticipated_outcome = 0
-                else:
-                    self.anticipated_outcome = 1
+                self.anticipated_outcome = self.latest_action[1] ^ 1
 
         return self.anticipated_outcome
 
