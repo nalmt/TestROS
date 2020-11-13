@@ -5,8 +5,9 @@
 # Olivier Georgeon, 2020.
 # This code is used to teach Develpmental AI.
 
-
+j=0
 class Agent:
+
     def __init__(self, _hedonist_table):
         """ Creating our agent """
         self.hedonist_table = _hedonist_table
@@ -17,21 +18,34 @@ class Agent:
         """ Computing the next action to enact """
         # TODO: Implement the agent's decision mechanism
         self._action = 0
+
+        if self.satisfaction(outcome)[2]==True:
+            self._action=1
+
         return self._action
 
     def anticipation(self):
         """ computing the anticipated outcome from the latest action """
         # TODO: Implement the agent's anticipation mechanism
         self.anticipated_outcome = 0
+
         return self.anticipated_outcome
 
     def satisfaction(self, new_outcome):
         """ Computing a tuple representing the agent's satisfaction after the last interaction """
+
         # True if the anticipation was correct
+        ennui = False
         anticipation_satisfaction = (self.anticipated_outcome == new_outcome)
+        if anticipation_satisfaction==True:
+            j= +1
+        if j==4:
+            j=0
+            ennui = True
+
         # The value of the enacted interaction
         hedonist_satisfaction = self.hedonist_table[self._action][new_outcome]
-        return anticipation_satisfaction, hedonist_satisfaction
+        return anticipation_satisfaction, hedonist_satisfaction, ennui
 
 
 class Environment1:
@@ -55,9 +69,11 @@ class Environment2:
 def world(agent, environment):
     """ The main loop controlling the interaction of the agent with the environment """
     outcome = 0
+
     for i in range(10):
         action = agent.action(outcome)
         outcome = environment.outcome(action)
+
         print(" Action: " + str(action) + ", Anticipation: " + str(agent.anticipation()) + ", Outcome: " + str(outcome)
               + ", Satisfaction: " + str(agent.satisfaction(outcome)))
 
