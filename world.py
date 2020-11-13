@@ -5,9 +5,9 @@
 # Olivier Georgeon, 2020.
 # This code is used to teach Develpmental AI.
 
-j=0
-class Agent:
 
+class Agent:
+    j = 0
     def __init__(self, _hedonist_table):
         """ Creating our agent """
         self.hedonist_table = _hedonist_table
@@ -38,9 +38,10 @@ class Agent:
         ennui = False
         anticipation_satisfaction = (self.anticipated_outcome == new_outcome)
         if anticipation_satisfaction==True:
-            j= +1
-        if j==4:
-            j=0
+            self.j+=1
+
+        if self.j==4:
+            self.j=0
             ennui = True
 
         # The value of the enacted interaction
