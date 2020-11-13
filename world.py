@@ -13,21 +13,30 @@ class Agent:
         self.hedonist_table = _hedonist_table
         self._action = 0
         self.anticipated_outcome = 0
+        self.ennui = False
 
     def action(self, outcome):
         """ Computing the next action to enact """
         # TODO: Implement the agent's decision mechanism
-        self._action = 0
 
-        if self.satisfaction(outcome)[2]==True:
-            self._action=1
+
+        if self.ennui == True:
+            if self._action == 1:
+                self._action = 0
+            else:
+                self._action = 1
+            self.ennui = False
+
 
         return self._action
 
     def anticipation(self):
         """ computing the anticipated outcome from the latest action """
         # TODO: Implement the agent's anticipation mechanism
-        self.anticipated_outcome = 0
+        if self._action == 1:
+            self.anticipated_outcome = 1
+
+
 
         return self.anticipated_outcome
 
@@ -35,18 +44,17 @@ class Agent:
         """ Computing a tuple representing the agent's satisfaction after the last interaction """
 
         # True if the anticipation was correct
-        ennui = False
+
         anticipation_satisfaction = (self.anticipated_outcome == new_outcome)
         if anticipation_satisfaction==True:
             self.j+=1
-
         if self.j==4:
             self.j=0
-            ennui = True
+            self.ennui = True
 
         # The value of the enacted interaction
         hedonist_satisfaction = self.hedonist_table[self._action][new_outcome]
-        return anticipation_satisfaction, hedonist_satisfaction, ennui
+        return anticipation_satisfaction, hedonist_satisfaction, self.ennui
 
 
 class Environment1:
