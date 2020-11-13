@@ -8,6 +8,7 @@
 
 class Agent:
     j = 0
+    Latest_action = (-1, -1)
     def __init__(self, _hedonist_table):
         """ Creating our agent """
         self.hedonist_table = _hedonist_table
@@ -18,6 +19,7 @@ class Agent:
     def action(self, outcome):
         """ Computing the next action to enact """
         # TODO: Implement the agent's decision mechanism
+        self.latest_action = (self._action, outcome)
 
 
         if self.ennui == True:
@@ -32,9 +34,20 @@ class Agent:
 
     def anticipation(self):
         """ computing the anticipated outcome from the latest action """
-        # TODO: Implement the agent's anticipation mechanism
-        if self._action == 1:
-            self.anticipated_outcome = 1
+        if self.latest_action == (-1, -1):
+            # Il s'agit de sa premiere action, il n'a pas d'action precedente et d'outcome associe
+            # sur lesquelles s'appuyer pour anticiper l'outcome de l'action actuelle.
+            # On va donc systematiquement anticiper une autcome de 0 au depart.
+            self.anticipated_outcome = 0
+        else:
+            # Son action est la meme que la precedente, l'outcome sera la meme.
+            if self.latest_action[0] == self._action:
+                self.anticipated_outcome = self.latest_action[1]
+            else:
+                # Son action est differente de la precedente, l'outcome sera differente.
+                self.anticipated_outcome = self.latest_action[1] ^ 1
+
+        return self.anticipated_outcome
 
 
 
@@ -92,8 +105,8 @@ hedonist_table = [[-1, 1], [-1, 1]]
 # TODO Choose an agent
 a = Agent(hedonist_table)
 # TODO Choose an environment
-e = Environment1()
-# e = Environment2()
+#e = Environment1()
+e = Environment2()
 # e = TurtleSimEnacter()
 
 world(a, e)
