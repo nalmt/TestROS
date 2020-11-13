@@ -28,9 +28,13 @@ class Agent:
         # ainsi que son outcome associe.
         self.latest_action = (self._action, outcome)
 
+        satisfaction = self.hedonist_table[self._action][outcome]
+
         if self.ennui:
             self._action ^= 1
             self.ennui = False
+        elif satisfaction == -1:
+            self._action ^= 1
             
         return self._action
 
